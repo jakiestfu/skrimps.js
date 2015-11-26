@@ -1,0 +1,26 @@
+{
+  "name": "skrimps.js",
+  "version": "1.0.0",
+  "description": "I love me some skreeyumps",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve": "python -m SimpleHTTPServer"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jakiestfu/skrimps.js.git"
+  },
+  "keywords": [
+    "skrimps",
+    "skreeyump",
+    "skramp",
+    "shrimp"
+  ],
+  "author": "Jacob Kelley",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jakiestfu/skrimps.js/issues"
+  },
+  "homepage": "https://github.com/jakiestfu/skrimps.js"
+}
