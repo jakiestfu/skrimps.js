@@ -91,6 +91,7 @@
     //cancelAnimationFrame(skrimper);
 
   }
+  window.skrimpReady = window.skrimpReady || [];
 
   renderSkrimps();
   var mousedown = false;
@@ -108,6 +109,8 @@
       mousedown = false;
     });
 
-  //renderSkrimps();
+  $.each(window.skrimpReady || [], function (i, fn) {
+    return fn();
+  });
 
 }());
