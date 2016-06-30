@@ -77,38 +77,40 @@
     }
   }
 
-  function skrimpBlast(e) {
-    var x = e.clientX;
-    var y = e.clientY;
-    //skrimps = [];
+  function skrimpBlast(data) {
     for (var i = 0; i < skrimp_count; i++) {
       var skrimp = new Skreeyump({
-        x: x,
-        y: y
+        x: data.x,
+        y: data.y
       });
       skrimps.push(skrimp);
     }
-    //cancelAnimationFrame(skrimper);
-
   }
+
   window.skrimpReady = window.skrimpReady || [];
+  window.skrimpBlast = skrimpBlast;
 
   renderSkrimps();
   var mousedown = false;
   $(document)
     .on('mousedown', function(e) {
       mousedown = true;
-      skrimpBlast(e);
+      skrimpBlast({
+        x: e.clientX,
+        y: e.clientY
+      });
     })
     .on('mousemove', function(e) {
       if (mousedown) {
-        skrimpBlast(e);
+        skrimpBlast({
+          x: e.clientX,
+          y: e.clientY
+        });
       }
     })
     .on('mouseup', function(e) {
       mousedown = false;
     });
-
   $.each(window.skrimpReady || [], function (i, fn) {
     return fn();
   });
