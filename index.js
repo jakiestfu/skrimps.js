@@ -11,14 +11,20 @@
     return Math.random() * (n2 - n1) + n1;
   }
 
-  var canvas = document.querySelector('canvas');
+  var canvas = $('<canvas class="skrimp-canvas" />').css({
+    position: 'fixed',
+    pointerEvents: 'none',
+    top: 0, right: 0,
+    bottom: 0, left: 0,
+    zIndex: 9999999
+  }).appendTo('body')[0];
   var ctx = canvas.getContext('2d');
 
   var W = canvas.width = window.innerWidth;
   var H = canvas.height = window.innerHeight;
 
   var gravity = 0.3;
-  var skrimp_count = 1;
+  var skrimp_count = 50;
 
   var image = new Image();
   image.src = 'http://i.imgur.com/odq0tWh.png';
@@ -41,10 +47,7 @@
   var skrimper;
 
   function renderSkrimps() {
-
-    if (!isComplete) {
-      skrimper = requestAnimationFrame(renderSkrimps);
-    }
+		skrimper = requestAnimationFrame(renderSkrimps);
     // Clearing screen to prevent trails
     ctx.clearRect(0, 0, W, H);
 
@@ -70,14 +73,14 @@
       if (skrimp.show) skrimp.draw();
     });
     if (!shownSkrimps) {
-      cancelAnimationFrame(skrimper);
+      //cancelAnimationFrame(skrimper);
     }
   }
 
   function skrimpBlast(e) {
     var x = e.clientX;
     var y = e.clientY;
-
+    //skrimps = [];
     for (var i = 0; i < skrimp_count; i++) {
       var skrimp = new Skreeyump({
         x: x,
@@ -85,10 +88,11 @@
       });
       skrimps.push(skrimp);
     }
-    cancelAnimationFrame(skrimper);
-    renderSkrimps();
+    //cancelAnimationFrame(skrimper);
+
   }
 
+  renderSkrimps();
   var mousedown = false;
   $(document)
     .on('mousedown', function(e) {
@@ -97,11 +101,13 @@
     })
     .on('mousemove', function(e) {
       if (mousedown) {
-          skrimpBlast(e);
+        skrimpBlast(e);
       }
     })
     .on('mouseup', function(e) {
       mousedown = false;
     });
+
+  //renderSkrimps();
 
 }());
